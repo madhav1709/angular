@@ -38,12 +38,12 @@ export class BlogViewComponent implements OnInit {
       blogId: '3',
       lastModified: '2019-12-20T12:20:47.854Z',
       created: '2019-12-20T12:20:47.854Z',
-      tags: [],
+      tags: ['new', 'latest'],
       author: 'Madhav',
       category: 'Drama',
       isPublished: true,
       views: 0,
-      bodyHTML: 'this is blog body',
+      bodyHTML: '<h1>this is blog body</h1> <p>Goood</p>',
       description: 'this is blog 3 description',
       title: 'This is blog 3'
     }
@@ -59,7 +59,7 @@ export class BlogViewComponent implements OnInit {
 
   }
   public getSingleBlogInformation(currentBlogId): any {
-    for (let blog of this.allBlogs) {
+    for (const blog of this.allBlogs) {
       if (blog.blogId == currentBlogId) {
         this.currentBlog = blog;
       }
