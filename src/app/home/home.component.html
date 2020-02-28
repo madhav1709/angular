@@ -12,10 +12,12 @@
           <p>{{ blog.description }}</p>
         </div>
         <div class="panel-footer">
-          Posted on {{ blog.created | date }}
+          Posted on {{ blog.created | date: "fullDate" }}
           <br />
           by {{ blog.author }} <br /><br />
-          <a [routerLink]="['/blog', blog.blogId]" class="btn btn-primary">Read</a>
+          <a [routerLink]="['/blog', blog.blogId]" class="btn btn-primary"
+            >Read</a
+          >
         </div>
       </div>
       <br />
