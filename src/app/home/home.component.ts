@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BlogService } from '../blog.service';
+
 
 @Component({
   selector: 'app-home',
@@ -6,48 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public allBlogs = [
-    {
-      blogId: '1',
-      lastModified: '2018-10-20T12:20:47.854Z',
-      created: '2018-10-20T12:20:47.854Z',
-      tags: [],
-      author: 'Admin',
-      category: 'comedy',
-      isPublished: true,
-      views: 0,
-      bodyHTML: 'this is blog body',
-      description: 'this is blog 1 description',
-      title: 'This is blog 1'
-    },
-    {
-      blogId: '2',
-      lastModified: '2019-10-20T12:20:47.854Z',
-      created: '2019-10-20T12:20:47.854Z',
-      tags: [],
-      author: 'Suresh',
-      category: 'Thriller',
-      isPublished: true,
-      views: 0,
-      bodyHTML: 'this is blog body',
-      description: 'this is blog 2 description',
-      title: 'This is blog 2'
-    },
-    {
-      blogId: '3',
-      lastModified: '2019-12-20T12:20:47.854Z',
-      created: '2019-12-20T12:20:47.854Z',
-      tags: [],
-      author: 'Madhav',
-      category: 'Drama',
-      isPublished: true,
-      views: 0,
-      bodyHTML: 'this is blog body',
-      description: 'this is blog 3 description',
-      title: 'This is blog 3'
-    }
-  ];
-  constructor() {}
+  public allBlogs;
+  
+  
+  constructor(public blogService:BlogService) {
+    console.log("Home constructor called");
 
-  ngOnInit(): void {}
+  }
+
+  ngOnInit(): void {
+    this.allBlogs = this.blogService.getAllBlogs();
+    console.log(this.allBlogs);
+
+  }
+
 }
