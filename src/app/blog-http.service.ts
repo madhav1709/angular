@@ -17,27 +17,39 @@ export class BlogHttpService {
 
   constructor(private _http: HttpClient) {
     console.log('blog-http service called');
-    
+
   }
-  private handleError(err:HttpErrorResponse){
-    console.log("Handle error Http calls");
+  private handleError(err: HttpErrorResponse) {
+    console.log('Handle error Http calls');
     console.log(err.message);
-    return Observable.throw(err.message);
+    return throwError(err.message);
 
   }
   public getAllBlogs(): any {
 
-    let myResponse = this._http.get(this.baseUrl + '/all?authToken=' + this.authToken);
+    const myResponse = this._http.get(this.baseUrl + '/all?authToken=' + this.authToken);
     console.log(myResponse);
     return myResponse;
-
-
   }
 
   public getSingleBlogInformation(currentBlogId): any {
-    let myResponse = this._http.get(this.baseUrl + '/view/' + currentBlogId + '?authToken=' + this.authToken);
+    const myResponse = this._http.get(this.baseUrl + '/view/' + currentBlogId + '?authToken=' + this.authToken);
     console.log(myResponse);
     return myResponse;
 
   }
+  public createBlog(blogData): any{
+    let myResponse = this._http.post(this.baseUrl + '/create' + '?authToken=' + this.authToken, blogData);
+    return myResponse;
+  }
+  public deleteBlog(blogId): any {
+    let data={};
+    return this._http.post(this.baseUrl +'/'+ blogId + '/delete?authToken=' + this.authToken, data);
+  }
+  public editBlog(blogId, blogData): any {
+    
+    return this._http.put(this.baseUrl +'/'+ blogId + '/edit?authToken=' + this.authToken, blogData);
+  
+  }
+
 }
